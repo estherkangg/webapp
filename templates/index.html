@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% extends 'layout.html' %}
 
 {% block container %}
-  <h2>Welcome!</h2>
-  <p>Welcome to the Flask app. This is the home page. Here are a few links to example pages you might find interesting.
+<p>Welcome to the NYU Student Off-Campus Apartment Database. Here you can find reviews from other NYU students their off-campus apartment experiences. 
     <ul>
-        <li><a href="{{ url_for('books')}}">A page that displays information about books</a></li>
-        <li><a href="{{ url_for('authors')}}">A page that displays information about authors</a></li>
-        <li><a href="{{ url_for('create_book')}}">A page with a form you can submit to create a new book record</a></li>
+        <li><a href="{{ url_for('review')}}">See What Others Have Posted</a></li>
+        <li><a href="{{ url_for('create_post')}}">Write Your Own Review</a></li>
+        <li><a href="{{ url_for('budget')}}">Find Apartments Under Your Budget</a></li>
     </ul>
-  </p>
+</p>
 {% endblock %}

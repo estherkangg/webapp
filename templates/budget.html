@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<style>
+    header {
+      display: flex;
+      justify-content: space-evenly;
+    }
+    header a {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #9d81d6;
+      color: white;
+      text-decoration: none;
+    }
+    header a:hover {
+      background-color: #723fa9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="{{ url_for('home')}}">Home</a>
+      <a href="{{ url_for('review')}}">All Reviews</a>
+      <a href="{{ url_for('create_post')}}">Leave a Review</a>
+      <a href="{{ url_for('budget')}}">Best Budget Friendly Options</a>
+    </header>
+</div>
+<html>
+<head>
+    <title>Cheapest Apartment Reviews</title>
+</head>
+<body>
+    <h1>Cheapest Apartment Reviews</h1>
+    {% if cheapest_reviews %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Rent</th>
+                    <th>Borough</th>
+                    <th>Bedrooms</th>
+                    <th>Bathrooms</th>
+                    <th>Washer/Dryer</th>
+                    <th>Dishwasher</th>
+                    <th>Message</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for review in cheapest_reviews %}
+                <tr>
+                    <td>{{ review.name }}</td>
+                    <td>{{ review.address }}</td>
+                    <td>{{ review.rent }}</td>
+                    <td>{{ review.borough }}</td>
+                    <td>{{ review.bedrooms }}</td>
+                    <td>{{ review.bathrooms }}</td>
+                    <td>{{ review.washer_dryer }}</td>
+                    <td>{{ review.dishwasher }}</td>
+                    <td>{{ review.message }}</td>
+                    <td>{{ review.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No cheapest reviews found.</p>
+    {% endif %}
+</body>
+</html>
+

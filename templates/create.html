@@ -1,16 +1,33 @@
-{% extends 'base.html' %} 
-{% extends 'layout.html' %}
-
-{% block container %}
-  <h2>Create Book</h2>
-  <p>Create a new record in the MongoDB database collection.</p>
-  <form method="POST" action="{{ url_for('books') }}">
-    <p>Title: <input type="text" id="title" name="title" /><br /></p>
-    <p>Author: <input type="text" id="author" name="author" /><br /></p>
-    <p>Published: <input type="text" id="published" name="published" /><br /></p>
-    <p>
-      <a href="{{ url_for('books')}}">Cancel</a>
-      <input type="submit" name="post-btn" value="Post" />
-    </p>
-  </form>
+{% extends 'base.html' %} {% block container %}
+<h2>Share your Apartment Experience!</h2>
+<p>Please fill out the below questionnaire to leave a review for an apartment.</p>
+<form method="POST" action="{{ url_for('create_post') }}">
+  <p>Full Name: <input type="text" id="name" name="name" /><br /></p>
+  <p>Apartment Address: <input type="text" id="address" name="address" /><br /></p>
+  <p>Monthly Rent: <input type="text" id="rent" name="rent" /><br /></p>
+  <label for="borough">Borough: </label>
+  <select name="borough" id="borough">
+    <option value="Brooklyn">Brooklyn</option>
+    <option value="Bronx">Bronx</option>
+    <option value="Manhattan">Manhattan</option>
+    <option value="Queens">Queens</option>
+    <option value="Staten Island">Staten Island</option>
+  </select><p></p>
+  <p>Number of Bedrooms: <input type="number" id="bedrooms" name="bedrooms" /><br /></p>
+  <p>Number of Bathrooms: <input type="number" id="bathrooms" name="bathrooms" /><br /></p>
+  <label for="washer_dryer">Washer and Dryer: </label>
+  <select name="washer_dryer" id="washer_dryer">
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select><p></p>
+  <label for="dishwasher">Dishwasher: </label>
+  <select name="dishwasher" id="dishwasher">
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select><p></p>
+  <p>Additional Comments: <textarea type="text" id="message" name="message"></textarea></p>
+  <p>
+    <input type="submit" name="post-btn" value="Post" />
+  </p>
+</form>
 {% endblock %}
