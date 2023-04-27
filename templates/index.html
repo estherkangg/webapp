@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+</style>
 {% block container %}
-<p>Welcome to the NYU Student Off-Campus Apartment Database. Here you can find reviews from other NYU students their off-campus apartment experiences. 
-    <ul>
-        <li><a href="{{ url_for('review')}}">See What Others Have Posted</a></li>
-        <li><a href="{{ url_for('create_post')}}">Write Your Own Review</a></li>
-        <li><a href="{{ url_for('budget')}}">Find Apartments Under Your Budget</a></li>
-    </ul>
-</p>
+<div>
+  <p>Welcome to the NYU Student Off-Campus Apartment Database. Here you can find reviews from other NYU students their off-campus apartment experiences. 
+  </p>
+</div>
+
 {% endblock %}

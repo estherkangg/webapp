@@ -41,7 +41,6 @@ def create(): # creates the form
     return render_template('create.html') # render the create template
 
 
-
 @app.route('/create', methods=['POST'])
 def create_post():
     """
@@ -81,6 +80,56 @@ def create_post():
 def thankyou():
     return render_template('thankyou.html')
 
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+    """
+    Route for GET and POST requests to the edit review page.
+    Allows the user to edit an existing review by ID.
+    """
+    if request.method == 'GET':
+        # get the review ID from the query string
+        review_id = request.args.get('id')
+        
+        # get the review with the specified ID from the database
+        review = db.apartment_reviews.find_one({'_id': ObjectId(review_id)})
+        
+        # render the edit review page with the review data
+        return render_template('edit.html', review=review)
+    
+    elif request.method == 'POST':
+        # get the review data from the form submission
+        review_id = request.form['review_id']
+        name = request.form['name']
+        address = request.form['address']
+        rent = request.form['rent']
+        borough = request.form['borough']
+        bedrooms = request.form['bedrooms']
+        bathrooms = request.form['bathrooms']
+        washer_dryer = request.form['washer_dryer']
+        dishwasher = request.form['dishwasher']
+        message = request.form['message']
+
+        # update the review with the new data
+        db.apartment_reviews.update_one(
+            {'_id': ObjectId(review_id)},
+            {'$set': {
+                'name': name,
+                'address': address,
+                'rent': rent,
+                'borough': borough,
+                'bedrooms': bedrooms,
+                'bathrooms': bathrooms,
+                'washer_dryer': washer_dryer,
+                'dishwasher': dishwasher,
+                'message': message,
+                'created_at': datetime.datetime.utcnow()
+            }}
+        )
+
+        # redirect to the review page after the review has been edited
+        return redirect(url_for('review'))
+
+
 @app.route('/delete', methods=['POST'])
 def delete_review():
     """
@@ -95,15 +144,6 @@ def delete_review():
     db.apartment_reviews.delete_one({'_id': ObjectId(review_id)})
     
     return redirect(url_for('review'))
-
-@app.route('/edit/<mongoid>')
-def edit(mongoid):
-    """
-    Route for GET requests to the edit page.
-    Displays a form users can fill out to edit an existing record.
-    """
-    doc = db.exampleapp.find_one({"_id": ObjectId(mongoid)})
-    return render_template('edit.html', mongoid=mongoid, doc=doc) # render the edit template
 
 @app.route('/webhook', methods=['POST'])
 def webhook():

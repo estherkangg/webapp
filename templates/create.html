@@ -1,33 +1,136 @@
-{% extends 'base.html' %} {% block container %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Apartment Experience</title>
+  <style>
+
+  </style>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  
+  body{
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  header a {
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #9d81d6;
+    color: white;
+    text-decoration: none;
+    font-size: 13pt;
+    text-align: center;
+    
+  }
+
+  header a:hover {
+    background-color: #723fa9;
+  }
+
+  .container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 30px;
+    
+  }
+
+  .container a:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .container a:first-child {
+    margin-right: 30px;
+  }
+
+  .container a:last-child {
+    margin-left: 10px;
+  }
+
+  container a:nth-child(3) {
+    margin-left: 10px;
+  }
+  p{
+    text-align: center;
+    font-size: 15pt;
+  }
+
+  h2{
+    padding-top: 50px;
+    text-align: center;
+    font-size: 25pt;
+    font-weight: 200px;
+  }
+
+  h3{
+    padding-bottom: 40px;
+    text-align: center;
+  }
+
+  .l{
+    text-align: center;
+    font-size: 15pt;
+    padding-bottom: 20px;
+  }
+
+</style>
+<div class="container">
+  <header>
+    <a href="{{ url_for('home')}}">Home</a>
+    <a href="{{ url_for('review')}}">All Reviews</a>
+    <a href="{{ url_for('create_post')}}">Leave a Review</a>
+    <a href="{{ url_for('budget')}}">Best Budget Friendly Options</a>
+  </header>
+
+{% block container %}
 <h2>Share your Apartment Experience!</h2>
-<p>Please fill out the below questionnaire to leave a review for an apartment.</p>
+<h3>Please fill out the below questionnaire to leave a review for an apartment.</h3>
 <form method="POST" action="{{ url_for('create_post') }}">
   <p>Full Name: <input type="text" id="name" name="name" /><br /></p>
   <p>Apartment Address: <input type="text" id="address" name="address" /><br /></p>
   <p>Monthly Rent: <input type="text" id="rent" name="rent" /><br /></p>
-  <label for="borough">Borough: </label>
-  <select name="borough" id="borough">
-    <option value="Brooklyn">Brooklyn</option>
-    <option value="Bronx">Bronx</option>
-    <option value="Manhattan">Manhattan</option>
-    <option value="Queens">Queens</option>
-    <option value="Staten Island">Staten Island</option>
-  </select><p></p>
   <p>Number of Bedrooms: <input type="number" id="bedrooms" name="bedrooms" /><br /></p>
   <p>Number of Bathrooms: <input type="number" id="bathrooms" name="bathrooms" /><br /></p>
-  <label for="washer_dryer">Washer and Dryer: </label>
-  <select name="washer_dryer" id="washer_dryer">
+  <div class="l">
+    <label for="borough">Borough: </label>
+    <select name="borough" id="borough">
+      <option value="Brooklyn">Brooklyn</option>
+      <option value="Bronx">Bronx</option>
+      <option value="Manhattan">Manhattan</option>
+      <option value="Queens">Queens</option>
+      <option value="Staten Island">Staten Island</option>
+    </select><p></p>
+
+    <label for="washer_dryer">Washer and Dryer: </label>
+    <select name="washer_dryer" id="washer_dryer">
     <option value="Yes">Yes</option>
     <option value="No">No</option>
-  </select><p></p>
-  <label for="dishwasher">Dishwasher: </label>
-  <select name="dishwasher" id="dishwasher">
+
+    </select><p></p>
+    <label for="dishwasher">Dishwasher: </label>
+    <select name="dishwasher" id="dishwasher">
     <option value="Yes">Yes</option>
     <option value="No">No</option>
-  </select><p></p>
+    </select><p></p>
+    </div>
+  
+  
   <p>Additional Comments: <textarea type="text" id="message" name="message"></textarea></p>
   <p>
     <input type="submit" name="post-btn" value="Post" />
   </p>
 </form>
+
+</head>
 {% endblock %}
+
+</html>
+
+

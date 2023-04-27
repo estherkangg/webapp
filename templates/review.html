@@ -1,93 +1,78 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<style>
-    header {
-      display: flex;
-      justify-content: space-evenly;
-    }
-    header a {
-      padding: 10px;
-      border-radius: 10px;
-      background-color: #9d81d6;
-      color: white;
-      text-decoration: none;
-    }
-    header a:hover {
-      background-color: #723fa9;
-    }
-
-    body {
-            background-color: #F2F2F2;
-            text-align: center;
-        }
-        
-        h1 {
-            color: #333;
-            margin-top: 50px;
-        }
-        
-        .reviews {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 50px auto;
-            max-width: 1200px;
-        }
-        
-        .review {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border-radius: 5px;
-            width: 48%;
-            margin-bottom: 30px;
-            padding: 20px;
-        }
-        
-        .review h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .review p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .review strong {
-            font-weight: bold;
-        }
-        
-        .review button {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .review button:hover {
-            background-color: #555;
-        }
-  </style>
-<body>
-  <div class="container">
-    <header>
-      <a href="{{ url_for('home')}}">Home</a>
-      <a href="{{ url_for('review')}}">All Reviews</a>
-      <a href="{{ url_for('create_post')}}">Leave a Review</a>
-      <a href="{{ url_for('budget')}}">Best Budget Friendly Options</a>
-    </header>
-</div>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Apartment Reviews</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+        body{
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        header a {
+            padding: 20px;
+            border-radius: 30px;
+            background-color: #9d81d6;
+            color: white;
+            text-decoration: none;
+            font-size: 13pt;
+            text-align: center;
+
+        }
+
+        header a:hover {
+            background-color: #723fa9;
+        }
+
+        .container {
+            padding-top: 10px;
+            padding-bottom: 20px;
+            margin-top: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+            border-radius: 30px;
+
+        }
+
+        .container a:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .container a:first-child {
+            margin-right: 30px;
+        }
+
+        .container a:last-child {
+            margin-left: 10px;
+        }
+
+        .container a:nth-child(3) {
+            margin-left: 10px;
+        }
+
+        .ed{
+            padding-top: 10px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Apartment Reviews</h1>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('home')}}">Home</a>
+            <a href="{{ url_for('review')}}">All Reviews</a>
+            <a href="{{ url_for('create_post')}}">Leave a Review</a>
+            <a href="{{ url_for('budget')}}">Best Budget Friendly Options</a>
+        </header>
+    </div>
+
     {% for review in reviews %}
         <div>
             <h2>{{ review.name }} - {{ review.address }}</h2>
@@ -99,12 +84,17 @@
             <p><strong>Dishwasher:</strong> {{ review.dishwasher }}</p>
             <p><strong>Review:</strong> {{ review.message }}</p>
             <p><strong>Created At:</strong> {{ review.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-            
+
             <!-- Add a form for deleting a review -->
             <form action="{{ url_for('delete_review') }}" method="post">
                 <input type="hidden" name="review_id" value="{{ review._id }}">
                 <button type="submit">Delete Review</button>
             </form>
+
+            <!-- Add a link for editing a review -->
+            <div class="ed">
+            <a href="{{ url_for('edit', id=review._id) }}" style="display: inline-block; margin-left: 10px;">Edit Review</a>
+            </div>
         </div>
     {% endfor %}
 </body>

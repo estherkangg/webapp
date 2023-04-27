@@ -1,0 +1,51 @@
+{% extends 'base.html' %}{% block container %}
+<h1>Edit Review</h1>
+<form action="{{ url_for('edit') }}" method="post">
+<input type="hidden" name="review_id" value="{{ review._id }}">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="{{ review.name }}">
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" value="{{ review.address }}">
+    </div>
+    <div>
+      <label for="rent">Monthly Rent:</label>
+      <input type="number" id="rent" name="rent" value="{{ review.rent }}">
+    </div>
+    <div>
+      <label for="borough">Borough:</label>
+      <select id="borough" name="borough">
+        <option value="Brooklyn" {% if review.borough == 'Brooklyn' %} selected {% endif %}>Brooklyn</option>
+        <option value="Bronx" {% if review.borough == 'Bronx' %} selected {% endif %}>Bronx</option>
+        <option value="Manhattan" {% if review.borough == 'Manhattan' %} selected {% endif %}>Manhattan</option>
+        <option value="Queens" {% if review.borough == 'Queens' %} selected {% endif %}>Queens</option>
+        <option value="Staten Island" {% if review.borough == 'Staten Island' %} selected {% endif %}>Staten Island</option>
+      </select>
+    </div>
+    <div>
+      <label for="bedrooms">Number of Bedrooms:</label>
+      <input type="number" id="bedrooms" name="bedrooms" value="{{ review.bedrooms }}">
+    </div>
+    <div>
+      <label for="bathrooms">Number of Bathrooms:</label>
+      <input type="number" id="bathrooms" name="bathrooms" value="{{ review.bathrooms }}">
+    </div>
+    <div>
+      <label for="washer_dryer">Washer and Dryer:</label>
+      <input type="text" id="washer_dryer" name="washer_dryer" value="{{ review.washer_dryer }}">
+    </div>
+    <div>
+      <label for="dishwasher">Dishwasher:</label>
+      <input type="text" id="dishwasher" name="dishwasher" value="{{ review.dishwasher }}">
+    </div>
+    <div>
+      <label for="message">Review:</label>
+      <textarea id="message" name="message">{{ review.message }}</textarea>
+    </div>
+    <div>
+      <input type="submit" name="update-btn" value="Update">
+    </div>
+  </form>
+{% endblock %}
