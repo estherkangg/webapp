@@ -14,7 +14,8 @@ app = Flask(__name__)
 # client = MongoClient()
 # db = client['exampleapp']
 
-uri = "mongodb+srv://ek3395:ek3395@webapps.r8y7smt.mongodb.net/?retryWrites=true&w=majority"
+# uri = "mongodb+srv://ek3395:ek3395@webapps.r8y7smt.mongodb.net/?retryWrites=true&w=majority"
+uri = "class-mongodb.cims.nyu.edu"
 connection = pymongo.MongoClient(uri)
 db = connection['ek3395']
 
